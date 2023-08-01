@@ -1,6 +1,22 @@
 Crypto Sublime Text 2 and 3 Package
 =============================
 
+---
+**Please note**: This version uses some additional options for encryption and decryption. 
+
+This means that files encrypted with this version are **NOT compatible** with files encrypted with a prior version.
+
+The new options are the equivalent of:
+```bash
+echo "data" | openssl enc -e -aes256 -md sha512 -pbkdf2 -iter 500000 -base64 -pass "pass:lolcats"
+```
+
+Previously this was:
+```bash
+echo "data" | openssl enc -e -aes128 -base64 -pass "pass:lolcats"
+```
+---
+
 ### Encrypt/ Decrypt a document or selection(s) using OpenSSL
 
 This Package depends on `openssl`
