@@ -10,6 +10,13 @@ features to the right click context menu.
 Usage: Make a selection (or not), Choose Crypto::Encrypt or Crypto::Decrypt 
 from the context menu and then enter a password
 
+Note: This version uses some additional options for encryption and decryption.
+The new options are the equivalent of:
+   echo "data" | openssl enc -e -aes256 -md sha512 -pbkdf2 -iter 500000 -base64 -pass "pass:lolcats"
+
+Previously this was:
+   echo "data" | openssl enc -e -aes128 -base64 -pass "pass:lolcats"
+   
 '''
 
 import sublime, sublime_plugin, os, random, string
@@ -105,6 +112,8 @@ def panel(window, message):
 # Encrypt/Decrypt using OpenSSL -aes128 and -base64
 # EG similar to running this CLI command:
 #   echo "data" | openssl enc -e -aes128 -base64 -pass "pass:lolcats"
+# This is not updated to a CLI command similar to:
+#   echo "data" | openssl enc -e -aes256 -md sha512 -pbkdf2 -iter 500000 -base64 -pass "pass:lolcats"
 #
 def crypto(view, enc_flag, password, data):
   s = sublime.load_settings("Crypto.sublime-settings")
@@ -117,7 +126,7 @@ def crypto(view, enc_flag, password, data):
   _pass = "env:%s" % envVar
 
   try:
-    openssl = Popen([openssl_command, "enc", enc_flag, cipher, "-base64", "-pass", _pass], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+    openssl = Popen([openssl_command, "enc", enc_flag, cipher, "-md", "sha512", "-pbkdf2", "-iter", "500000", "-base64", "-pass", _pass], stdin=PIPE, stdout=PIPE, stderr=PIPE)
     result, error = openssl.communicate( data.encode("utf-8") )
     del os.environ[envVar] # get rid of the temporary ENV var
   except IOError as e:
