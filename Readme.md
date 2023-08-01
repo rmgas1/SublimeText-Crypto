@@ -81,8 +81,8 @@ Author & Contributors
 [Derek Anderson](http://twitter.com/derekanderson)  
 [Isaac Muse](https://github.com/facelessuser)  
 [Elliot Marsden](https://github.com/eddiejessup)  
-[@circulosmeos](https://github.com/circulosmeos)
-
+[@circulosmeos](https://github.com/circulosmeos)  
+[RafalG](http://github.com/rmgas1)
 
 License
 -------
