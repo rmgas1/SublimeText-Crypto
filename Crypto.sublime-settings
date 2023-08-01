@@ -3,6 +3,6 @@
   // e.g. "/usr/bin/openssl" or "C:\\bin\\openssl.exe"
   "openssl_command": "openssl",
   // The Cipher Type to use, e.g. "-des3" or "-aes256"
-  "cipher": "-aes128",
+  "cipher": "-aes256",
   "obfuscate_password": false
 }
